@@ -2,31 +2,56 @@
 earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
                        encoding = 'UTF-8')
 
+library(stringr)
+
 earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
 
 library(leaflet)
 library(magrittr)
-library(stringr)
 library(RColorBrewer)
 
 ee_mag_min = function(mag_min){
   
+  message('Wymagane pakiety: leaflet, magrittr, RColorBrewer')
+  
+  #wyświetla komunikat błędu w momencie, kiedy podany argument nie jest wartością numeryczną
+  
+  if (!(is.numeric(mag_min))) {
+    
+    stop('Argument musi być typu numerycznego')
+    
+  } 
+  
+  #wydzielenie wartości trzęsień o magnitudzie większej od podanego argumentu
+  
   ee = earthquakes[earthquakes$mag > mag_min, ]
   
-  color_bin = seq(mag_min,9, by = 1)
+  #skala podziału palety kolorów
+  
+  color_bin = seq(mag_min,9, by = 1) 
+  
+  #paleta kolorów, zależna od wartości magnitudy
   
   color_palette = colorBin(palette = 'YlOrRd', 
                            bins = color_bin, 
                            na.color = 'transparent', 
-                           domain = ee$mag)
+                           domain = ee$mag) 
+  
+  #tworzenie mapy za pomocą pakietu 'leaflet' 
   
   map = leaflet() %>%
+    
+    #dodanie podkładu w postaci mapy świata, której dostawcą jest Esri
     
     addTiles() %>%
     
     addProviderTiles("Esri.WorldImagery") %>%
     
+    #ustawianie domyślnego widoku mapy
+    
     setView( lat=0, lng=0 , zoom=2) %>%
+    
+    #dodanie znaczników na mapie, ich wielkość i kolor zależy od wartości magnitudy
     
     addCircleMarkers(data = ee, 
                      lng = ee$longitude, 
@@ -35,18 +60,27 @@ ee_mag_min = function(mag_min){
                      fillColor = ~color_palette(mag), 
                      fillOpacity = 0.9, 
                      stroke = FALSE,
+                     
+                     #dodanie okienek z podanymi danymi, które wyskakują po kliknięciu w miejscu trzęsienia
+                     
                      popup = paste('<b>Place:</b>', ee$place, 
                                    '<b>Date & time:</b>', ee$time,
                                    '<b>Magnitude:</b>', ee$mag, 
                                    '<b>Depth:</b>', ee$depth, sep = '</br>')) %>%
     
-    addLegend( pal= color_palette, 
-               values= ee$mag, 
-               opacity=0.8, 
+    #dodanie legendy z odpowiednimi kolorami, wartościami magnitudy i tytułem 
+    
+    addLegend( pal = color_palette, 
+               values = ee$mag, 
+               opacity= 0.8,
                title = 'Magnitude', 
                position = 'bottomright') %>%
     
+    #dodanie miniaturowej mapy, określenie jej pozycji i wielkości
+    
     addMiniMap(position = 'bottomleft', height = 90)
+    
+  #finalny wygląd mapy
   
   map
   
@@ -55,8 +89,10 @@ ee_mag_min = function(mag_min){
 
 #przykłady
 
+
 ee_mag_min(0)
-ee_mag_min(2)
 ee_mag_min(5)
+ee_mag_min('siedem')
+
 
 
