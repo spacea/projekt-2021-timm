@@ -1,18 +1,27 @@
 
-earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
-                       encoding = 'UTF-8')
-
-library(stringr)
-
-earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
-
-library(leaflet)
-library(magrittr)
-library(RColorBrewer)
 
 ee_mag_min = function(mag_min){
   
-  message('Wymagane pakiety: leaflet, magrittr, RColorBrewer')
+  message('Dane pochodzą z United States Geological Survey i obejmują ostatnie 30 dni')
+  
+  if ((library(leaflet) == F) ||
+      (library(stringr) == F ||
+      (library(RColorBrewer) == F) ||
+      (library(magrittr) == F))) {
+    
+    stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
+  }
+  
+  earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
+                         encoding = 'UTF-8')
+  
+  library(stringr)
+  
+  earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
+  
+  library(leaflet)
+  library(magrittr)
+  library(RColorBrewer)
   
   #wyświetla komunikat błędu w momencie, kiedy podany argument nie jest wartością numeryczną
   
@@ -90,8 +99,8 @@ ee_mag_min = function(mag_min){
 #przykłady
 
 
+ee_mag(0)
 ee_mag_min(0)
-ee_mag_min(5)
 ee_mag_min('siedem')
 
 
