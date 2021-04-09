@@ -1,10 +1,6 @@
 
 ee_mag = function(mag_min, mag_max){
   
-  #wyświetla wiadomość
-  
-  message('Dane pochodzą z United States Geological Survey i obejmują ostatnie 30 dni')
-  
   #sprawdza, czy wymagane pakiety są posiadane, jeżeli nie - wyświetla komunikat błędu
   
   if ((library(leaflet) == F) ||
@@ -28,6 +24,11 @@ ee_mag = function(mag_min, mag_max){
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
+  #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
+  
+  message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
+          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+  
   #aktywuje pakiety
   
   library(leaflet)
@@ -48,7 +49,7 @@ ee_mag = function(mag_min, mag_max){
   
   #skala podziału palety kolorów
   
-  color_bin = seq(0,9, by = 1) 
+  color_bin = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5)  
   
   #paleta kolorów, zależna od wartości magnitudy
   
