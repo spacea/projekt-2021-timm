@@ -101,4 +101,6 @@ ee_date = function(date){
 
 ee_date('2021-03-20')
 
+ee_date(c('2021-03-12','2021-03-20'))
+
 

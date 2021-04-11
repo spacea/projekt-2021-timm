@@ -19,6 +19,10 @@ ee_mag_min = function(mag_min){
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
+  #dodanie kolejnej kolumny tylko z dniem
+  
+  earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
+  
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
