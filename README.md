@@ -43,7 +43,56 @@ W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat bł
   
 Sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
 
-ee_mag_min - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie
+ee_mag_min - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie.
+
+         ee_mag_min = function(mag_min){ ... }
 
 ee_date - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, które zarejestrowano danego dnia.
+
+         ee_date = function(date){ ... }
+
+We wszystykich funkcjach tworzenie mapy odbywa się na takiej samej zasadzie, za pomocą pakietu leaflet i RColorBrewer, dostarczającego paletę kolorów.
+
+          #tworzenie mapy za pomocą pakietu 'leaflet' 
+  
+  map = leaflet() %>%
+    
+    #dodanie podkładu w postaci mapy świata, której dostawcą jest Esri
+    
+    addTiles() %>%
+    
+    addProviderTiles("Esri.WorldImagery") %>%
+    
+    #ustawianie domyślnego widoku mapy
+    
+    setView( lat=0, lng=0 , zoom=2) %>%
+    
+    #dodanie znaczników na mapie, ich wielkość i kolor zależy od wartości magnitudy
+    
+    addCircleMarkers(data = ee, 
+                     lng = ee$longitude, 
+                     lat = ee$latitude,
+                     radius = ee$mag*10^0.06,
+                     fillColor = ~color_palette(mag), 
+                     fillOpacity = 0.9, 
+                     stroke = FALSE,
+                     
+                     #dodanie okienek z podanymi danymi, które wyskakują po kliknięciu w miejscu trzęsienia
+                     
+                     popup = paste('<b>Place:</b>', ee$place, 
+                                   '<b>Date & time:</b>', ee$time,
+                                   '<b>Magnitude:</b>', ee$mag, 
+                                   '<b>Depth:</b>', ee$depth, sep = '</br>')) %>%
+    
+    #dodanie legendy z odpowiednimi kolorami, wartościami magnitudy i tytułem 
+    
+    addLegend( pal = color_palette, 
+               values = ee$mag, 
+               opacity= 0.8,
+               title = 'Magnitude', 
+               position = 'bottomright') %>%
+    
+    #dodanie miniaturowej mapy, określenie jej pozycji i wielkości
+    
+    addMiniMap(position = 'bottomleft', height = 90)
 
