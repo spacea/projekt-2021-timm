@@ -4,8 +4,16 @@ Aleksandra Stefaniak
 Urszula Sołtykowska
 Maria Timm
 
-Założenia projektu:
 
+Założenia i opis projektu:
+
+Nasz projekt pozwala na przedstawienie oraz zwizualizowanie na mapie danych dotyczących trzęsień Ziemi na świecie w sposób wybrany przez odbiorcę. 
+Stworzone funkcje, wykorzystujące pakiety wymienione poniżej, dają możliwość między innymi: wybrania zakresu głębokości zjawiska, wartości magnitudy czy też wyświetlenia trzęsień z dnia, który nas interesuje. 
+Pozwala to w szybki i przejrzysty sposób znalezienie interesujących odbiorcę danych. 
+Praca z nimi jest również klarowniejsza, ponieważ wprowadzona została paleta kolorów ułatwiająca ich odczytywanie. 
+Dodatkowo, w razie błędów, wyświetlane są pomocne komunikaty, nakierowujące adresata projektu na to jaki wystąpił problem. 
+
+Dane użyte w naszej pracy pochodzą z amerykańskiej agencji naukowo-badawczej (USGS).
 
 
 Funkcje:
