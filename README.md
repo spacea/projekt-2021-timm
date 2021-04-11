@@ -51,6 +51,17 @@ ee_date - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, kt�
 
          ee_date = function(date){ ... }
 
+ee_depth - argumentami funkcji jest zakres głębokości, na jakich wystąpiło trzęsienie, jaki ma zostać przedstawiony na mapie. 
+
+         ee_depth = function(depth_min, depth_max){ ... }
+         
+         depth_min - wartość minimalna zakresu
+         dwpth_max - wartość maksymalna zakresu
+         
+ee_depth_min - argumentem (depth_min) funkcji jest minimalna głębokość, na której wystąpiło trzęsienie, jaka ma zostać przedstawiona na mapie.
+          
+          ee_depth_min = function(depth_min){ ... }
+          
 We wszystykich funkcjach tworzenie mapy odbywa się na takiej samej zasadzie, za pomocą pakietu leaflet i RColorBrewer, dostarczającego paletę kolorów.
 
           #tworzenie mapy za pomocą pakietu 'leaflet' 
