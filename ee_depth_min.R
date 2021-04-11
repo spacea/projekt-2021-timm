@@ -1,6 +1,5 @@
 ee_depth_min = function(depth_min){
   
-  message('Dane pochodzą z United States Geological Survey i obejmują ostatnie 30 dni')
   
   if ((library(leaflet) == F) ||
       (library(stringr) == F ||
@@ -16,7 +15,15 @@ ee_depth_min = function(depth_min){
   library(stringr)
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
-
+  #dodanie kolejnej kolumny tylko z dniem
+  
+  earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
+  
+  #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
+  
+  message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
+          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+  
   library(leaflet)
   library(magrittr)
   library(RColorBrewer)
