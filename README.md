@@ -43,3 +43,7 @@ W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat bł
   
 Sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
 
+ee_mag_min - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie
+
+ee_date - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, które zarejestrowano danego dnia.
+
