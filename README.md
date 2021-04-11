@@ -19,20 +19,20 @@ ee_mag - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawion
 
 W trakcie wykonywania kodu wyświetlana jest wiadomość podająca pochodzenie danych oraz rozpiętość czasową po wcześniejszym ich przygotowaniu.
 
-  pobiera i przypisuje dane:
+  #pobiera i przypisuje dane:
   earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
                          encoding = 'UTF-8')
   
-  aktywuje pakiet:
+  #aktywuje pakiet:
   library(stringr)
   
-  zamienia dane w kolumnie time za pomocą funkcji z pakietu stringr według podanego wzoru:
+  #zamienia dane w kolumnie time za pomocą funkcji z pakietu stringr według podanego wzoru:
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
-  dodanie kolejnej kolumny tylko z dniem:
+  #dodanie kolejnej kolumny tylko z dniem:
   earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
   
-  wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych:
+  #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych:
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
           tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
           
