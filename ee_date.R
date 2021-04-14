@@ -8,7 +8,6 @@ ee_date = function(date){
       (library(stringr) == F ||
        (library(RColorBrewer) == F) ||
        (library(magrittr) == F))) {
-    
     stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
   }
   
@@ -21,12 +20,7 @@ ee_date = function(date){
   
   #dodanie kolejnej kolumny tylko z dniem
   
-  earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
-  
-  #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
-  
-  message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+  earthquakes = data.frame(earthquakes, date = as.Date(earthquakes$time))
   
   library(leaflet)
   library(magrittr)
@@ -35,6 +29,18 @@ ee_date = function(date){
   #wydzielenie wartości trzęsień z podanego dnia
   
   ee = earthquakes[earthquakes$date == date, ]
+  
+  #wyświetlenie błędu, jeżeli podany argument wykracza poza dostępne dane
+  
+  if (date < tail(earthquakes$date, 1)){
+    stop('Maksymalny zakres danych od', '\ ', tail(earthquakes$date, 1), '\ ', 
+         'do', '\ ', head(earthquakes$date, 1))
+  }
+
+  #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
+  
+  message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
+          tail(ee$time, 1), '\ ', 'do', '\ ', head(ee$time, 1)) 
   
   #skala podziału palety kolorów
   
@@ -97,10 +103,10 @@ ee_date = function(date){
 }
 
 
+
 #przykłady
 
-ee_date('2021-03-20')
-
-ee_date(c('2021-03-12','2021-03-20'))
+ee_date('2021-03-10')
+ee_date('2021-03-15')
 
 
