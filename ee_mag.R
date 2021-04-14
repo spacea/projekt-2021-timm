@@ -7,7 +7,6 @@ ee_mag = function(mag_min, mag_max){
       (library(stringr) == F ||
        (library(RColorBrewer) == F) ||
        (library(magrittr) == F))) {
-    
     stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
   }
   
@@ -24,10 +23,14 @@ ee_mag = function(mag_min, mag_max){
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
+  #dodanie kolejnej kolumny tylko z dniem
+  
+  earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
+  
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+          tail(earthquakes$time, 1), '\ ', 'do', '\ ', head(earthquakes$time, 1))
   
   #aktywuje pakiety
   
@@ -38,10 +41,12 @@ ee_mag = function(mag_min, mag_max){
   #wyświetla komunikat błędu w momencie, kiedy podany argument nie jest wartością numeryczną
   
   if (!is.numeric(mag_min) | !is.numeric(mag_max)) {
-    
     stop('Argumenty muszą być typu numerycznego')
-    
   } 
+  
+  if (mag_min > mag_max) {
+    stop('Zakres musi być przedstawiony od min do max')
+  }
 
   #wydzielenie wartości trzęsień o magnitudzie równej podanemu argumentowi, bądź zawierającemu się w podanym przedziale
   
@@ -57,6 +62,10 @@ ee_mag = function(mag_min, mag_max){
                            bins = color_bin, 
                            na.color = 'transparent', 
                            domain = ee$mag) 
+  
+  #ukrycie komunikatu ostrzegawczego
+  
+  options(warn = -1)
   
   #tworzenie mapy za pomocą pakietu 'leaflet' 
   
@@ -107,5 +116,5 @@ ee_mag = function(mag_min, mag_max){
   
 }
 
-ee_mag(-2, 0)
+ee_mag(-2, 9)
 

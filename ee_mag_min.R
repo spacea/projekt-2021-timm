@@ -25,7 +25,7 @@ ee_mag_min = function(mag_min){
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+          tail(earthquakes$time, 1), '\ ', 'do', '\ ', head(earthquakes$time, 1))
   
   library(leaflet)
   library(magrittr)
@@ -55,6 +55,10 @@ ee_mag_min = function(mag_min){
                            bins = color_bin, 
                            na.color = 'transparent', 
                            domain = ee$mag) 
+  
+  #ukrycie komunikatu ostrzegawczego
+  
+  options(warn = -1)
   
   #tworzenie mapy za pomocą pakietu 'leaflet' 
   
