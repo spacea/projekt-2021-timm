@@ -8,7 +8,6 @@ ee_mag_min = function(mag_min){
       (library(stringr) == F ||
       (library(RColorBrewer) == F) ||
       (library(magrittr) == F))) {
-    
     stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
   }
   
@@ -35,10 +34,12 @@ ee_mag_min = function(mag_min){
   #wyświetla komunikat błędu w momencie, kiedy podany argument nie jest wartością numeryczną
   
   if (!(is.numeric(mag_min))) {
-    
     stop('Argument musi być typu numerycznego')
-    
-  } 
+  }
+  
+  if (mag_min > 9) {
+    stop('Argument nie może być większy od 9')
+  }
   
   #wydzielenie wartości trzęsień o magnitudzie większej od podanego argumentu
   

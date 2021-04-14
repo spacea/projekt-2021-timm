@@ -24,10 +24,6 @@ ee_mag = function(mag_min, mag_max){
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
-  #dodanie kolejnej kolumny tylko z dniem
-  
-  earthquakes = data.frame(earthquakes, date = as.POSIXct(earthquakes$time))
-  
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
@@ -43,7 +39,7 @@ ee_mag = function(mag_min, mag_max){
   
   if (!is.numeric(mag_min) | !is.numeric(mag_max)) {
     
-    stop('Argument musi być typu numerycznego')
+    stop('Argumenty muszą być typu numerycznego')
     
   } 
 
@@ -111,5 +107,5 @@ ee_mag = function(mag_min, mag_max){
   
 }
 
-ee_mag(-2,9)
+ee_mag(-2, 0)
 
