@@ -51,15 +51,11 @@ ee_mag = function(mag_min, mag_max){
   #wydzielenie wartości trzęsień o magnitudzie równej podanemu argumentowi, bądź zawierającemu się w podanym przedziale
   
   ee = earthquakes[earthquakes$mag >= mag_min & earthquakes$mag <= mag_max, ]
-  
-  #skala podziału palety kolorów
-  
-  color_bin = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5)  
-  
+
   #paleta kolorów, zależna od wartości magnitudy
   
   color_palette = colorBin(palette = 'YlOrRd', 
-                           bins = color_bin, 
+                           bins = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5), 
                            na.color = 'transparent', 
                            domain = ee$mag) 
   

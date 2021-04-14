@@ -40,18 +40,18 @@ ee_date = function(date){
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(ee$time, 1), '\ ', 'do', '\ ', head(ee$time, 1)) 
-  
-  #skala podziału palety kolorów
-  
-  color_bin = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5) 
+          tail(earthquakes$time, 1), '\ ', 'do', '\ ', head(earthquakes$time, 1)) 
   
   #paleta kolorów, zależna od wartości magnitudy
   
   color_palette = colorBin(palette = 'YlOrRd', 
-                           bins = color_bin, 
+                           bins = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5), 
                            na.color = 'transparent', 
                            domain = ee$mag) 
+  
+  #ukrycie komunikatu ostrzegawczego
+  
+  options(warn = -1)
   
   #tworzenie mapy za pomocą pakietu 'leaflet' 
   

@@ -45,14 +45,10 @@ ee_mag_min = function(mag_min){
   
   ee = earthquakes[earthquakes$mag > mag_min, ]
   
-  #skala podziału palety kolorów
-  
-  color_bin = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5)  
-  
   #paleta kolorów, zależna od wartości magnitudy
   
   color_palette = colorBin(palette = 'YlOrRd', 
-                           bins = color_bin, 
+                           bins = seq((min(earthquakes$mag, na.rm = T)), 9, by = 1.5), 
                            na.color = 'transparent', 
                            domain = ee$mag) 
   
