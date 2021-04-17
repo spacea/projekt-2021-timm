@@ -27,14 +27,14 @@ Funkcje:
 ------
 **ee_mag** - argumentami funkcji jest zakres magnitudy, jaki szukamy. Wynikiem są trzęsienia ziemi o magnitudzie **z podanego przedziału** przedstawione na mapie.
 
-         **ee_mag** = function(mag_min, mag_max){ ... }
+         ee_mag = function(mag_min, mag_max){ ... }
 
          mag_min - wartość minimalna zakresu
          mag_max - wartość maksymalna zakresu
          
 **ee_mag_min** - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie.
 
-         **ee_mag_min** = function(mag_min){ ... }
+         ee_mag_min = function(mag_min){ ... }
 
 **ee_date** - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, które zarejestrowano danego dnia.
 
