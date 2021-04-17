@@ -1,4 +1,5 @@
-Grupa:
+Alt-H1 Grupa:
+======
 
 Aleksandra Stefaniak
 Urszula Sołtykowska
