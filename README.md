@@ -75,7 +75,7 @@ W trakcie wykonywania kodu wyświetlana jest wiadomość podająca **pochodzenie
              (library(magrittr) == F))) {
     
     stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
-  }
+    }
   
 Funkcja sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
           
