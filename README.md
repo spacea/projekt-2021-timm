@@ -1,4 +1,4 @@
-#Alt-H1 Grupa:
+Grupa:
 ======
 
 Aleksandra Stefaniak
