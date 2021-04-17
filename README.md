@@ -24,14 +24,31 @@ RColorBrewer
 magrittr
 
 Funkcje:
-
-ee_mag - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawiony na mapie.
+------
+**ee_mag ** - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawiony na mapie.
 
          ee_mag = function(mag_min, mag_max){ ... }
 
          mag_min - wartość minimalna zakresu
          mag_max - wartość maksymalna zakresu
+**ee_mag_min** - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie.
 
+         ee_mag_min = function(mag_min){ ... }
+
+**ee_date** - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, które zarejestrowano danego dnia.
+
+         ee_date = function(date){ ... }
+
+**ee_depth** - argumentami funkcji jest zakres głębokości, na jakich wystąpiło trzęsienie, jaki ma zostać przedstawiony na mapie. 
+
+         ee_depth = function(depth_min, depth_max){ ... }
+         
+         depth_min - wartość minimalna zakresu
+         dwpth_max - wartość maksymalna zakresu
+         
+**ee_depth_min** - argumentem (depth_min) funkcji jest minimalna głębokość, na której wystąpiło trzęsienie, jaka ma zostać przedstawiona na mapie.
+          
+          ee_depth_min = function(depth_min){ ... }
 W trakcie wykonywania kodu wyświetlana jest wiadomość podająca pochodzenie danych oraz rozpiętość czasową po wcześniejszym ich pobraniu i przygotowaniu.
 
          earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
@@ -58,24 +75,7 @@ W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat bł
   
 Sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
 
-ee_mag_min - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie.
 
-         ee_mag_min = function(mag_min){ ... }
-
-ee_date - argumentem (date) funkcji jest data. Funkcja wydziela trzęsienia, które zarejestrowano danego dnia.
-
-         ee_date = function(date){ ... }
-
-ee_depth - argumentami funkcji jest zakres głębokości, na jakich wystąpiło trzęsienie, jaki ma zostać przedstawiony na mapie. 
-
-         ee_depth = function(depth_min, depth_max){ ... }
-         
-         depth_min - wartość minimalna zakresu
-         dwpth_max - wartość maksymalna zakresu
-         
-ee_depth_min - argumentem (depth_min) funkcji jest minimalna głębokość, na której wystąpiło trzęsienie, jaka ma zostać przedstawiona na mapie.
-          
-          ee_depth_min = function(depth_min){ ... }
           
 We wszystykich funkcjach tworzenie mapy odbywa się na takiej samej zasadzie, za pomocą pakietu leaflet i RColorBrewer, dostarczającego paletę kolorów.
 
