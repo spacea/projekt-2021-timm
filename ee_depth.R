@@ -11,10 +11,10 @@ ee_depth = function(depth_min, depth_max){
   
   earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
                          encoding = 'UTF-8')
-  min(earthquakes$depth)
-  earthquakes
+  #aktywuje pakiet
   library(stringr)
   
+  #zamienia dane w kolumnie time według podanego wzoru
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
   
   #dodanie kolejnej kolumny tylko z dniem
@@ -24,19 +24,24 @@ ee_depth = function(depth_min, depth_max){
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
-  
+          tail(earthquakes$time, 1), '\ ', 'do', '\ ', head(earthquakes$time, 1))
+  #aktywuje pakiety
   library(leaflet)
   library(magrittr)
   library(RColorBrewer)
   
   #wyświetla komunikat błędu w momencie, kiedy podany argument nie jest wartością numeryczną
   
-  if (!(is.numeric(depth_min)) | !is.numeric(depth_max)) {
+  if (!is.numeric(depth_min) | !is.numeric(depth_max)) {
     
     stop('Argument musi być typu numerycznego')
     
   } 
+  
+  if (depth_min > depth_max) {
+    stop('Zakres musi być przedstawiony od min do max')
+  }
+  
   
   #wydzielenie wartości trzęsień na głębokości równej podanemu argumentowi, bądź zawierającemu się w podanym przedziale
   
@@ -53,6 +58,9 @@ ee_depth = function(depth_min, depth_max){
                            bins = color_bin, 
                            na.color = 'transparent', 
                            domain = ee$depth) 
+  #ukrycie komunikatu ostrzegawczego
+  
+  options(warn = -1)
   
   #tworzenie mapy za pomocą pakietu 'leaflet' 
   
