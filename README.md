@@ -51,7 +51,7 @@ Funkcje:
           
           ee_depth_min = function(depth_min){ ... }
          
-Działanie funkcji
+Działanie funkcji:
 ------
 W trakcie wykonywania kodu wyświetlana jest wiadomość podająca **pochodzenie danych** oraz **rozpiętość czasową, z których one pochodzą** po wcześniejszym ich pobraniu i przygotowaniu.
 
