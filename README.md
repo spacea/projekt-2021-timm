@@ -25,12 +25,13 @@ magrittr
 
 Funkcje:
 ------
-**ee_mag ** - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawiony na mapie.
+**ee_mag** - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawiony na mapie.
 
          ee_mag = function(mag_min, mag_max){ ... }
 
          mag_min - wartość minimalna zakresu
          mag_max - wartość maksymalna zakresu
+         
 **ee_mag_min** - argumentem (mag_min) funkcji jest minimalna wartość magnitudy, jaka ma zostać przedstawiona na mapie.
 
          ee_mag_min = function(mag_min){ ... }
@@ -49,7 +50,10 @@ Funkcje:
 **ee_depth_min** - argumentem (depth_min) funkcji jest minimalna głębokość, na której wystąpiło trzęsienie, jaka ma zostać przedstawiona na mapie.
           
           ee_depth_min = function(depth_min){ ... }
-W trakcie wykonywania kodu wyświetlana jest wiadomość podająca pochodzenie danych oraz rozpiętość czasową po wcześniejszym ich pobraniu i przygotowaniu.
+         
+Działanie funkcji
+------
+W trakcie wykonywania kodu wyświetlana jest wiadomość podająca **pochodzenie danych** oraz **rozpiętość czasową, z których one pochodzą** po wcześniejszym ich pobraniu i przygotowaniu.
 
          earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
                          encoding = 'UTF-8')
@@ -63,7 +67,7 @@ W trakcie wykonywania kodu wyświetlana jest wiadomość podająca pochodzenie d
          message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
           tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
           
-W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat błędu za pomocą:
+**W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat błędu za pomocą:**
 
          if ((library(leaflet) == F) ||
              (library(stringr) == F ||
@@ -73,15 +77,12 @@ W momencie, kiedy wymagane pakiety nie są obecne, funkcja odsyła komunikat bł
     stop('Funkcja wymaga następujących pakietów: leaflet, stringr, RColorBrewer, magrittr')
   }
   
-Sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
-
-
+Funkcja sprawdza również, czy podane argumenty są typu numerycznego. Za pomocą pakietu lefalet funkcja tworzy mapę według podanych parametrów i na samym końcu wyświetla ją.
           
-We wszystykich funkcjach tworzenie mapy odbywa się na takiej samej zasadzie, za pomocą pakietu leaflet i RColorBrewer, dostarczającego paletę kolorów.
+We wszystykich funkcjach tworzenie mapy odbywa się na takiej samej zasadzie, za pomocą pakietu **leaflet** i **RColorBrewer**, dostarczającego paletę kolorów.
 
           #tworzenie mapy za pomocą pakietu 'leaflet' 
-  
-  map = leaflet() %>%
+          map = leaflet() %>%
     
     #dodanie podkładu w postaci mapy świata, której dostawcą jest Esri
     
