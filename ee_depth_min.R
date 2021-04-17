@@ -11,7 +11,7 @@ ee_depth_min = function(depth_min){
   
   earthquakes = read.csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv',
                          encoding = 'UTF-8')
-
+  
   library(stringr)
   
   earthquakes$time = str_replace_all(earthquakes$time, pattern = '\\T', replacement = '\\ ')
@@ -22,7 +22,7 @@ ee_depth_min = function(depth_min){
   #wiadomość podaje okres od ostatniej do pierwszej daty w ramce danych
   
   message('Dane pochodzą z United States Geological Survey i obejmują czas od', '\ ',
-          tail(earthquakes$date, 1), '\ ', 'do', '\ ', head(earthquakes$date, 1))
+          tail(earthquakes$time, 1), '\ ', 'do', '\ ', head(earthquakes$time, 1))
   
   library(leaflet)
   library(magrittr)
@@ -35,6 +35,10 @@ ee_depth_min = function(depth_min){
     stop('Argument musi być typu numerycznego')
     
   } 
+ 
+  if (depth_min > 675) {
+    stop('Argument nie może być większy od 675')
+  }
   
   #wydzielenie wartości trzęsień o głębokości większej od podanego argumentu
   
@@ -44,13 +48,16 @@ ee_depth_min = function(depth_min){
   
   color_bin = seq(0, 675, by = 75 ) 
   
- 
+  
   #paleta kolorów, zależna od głębokości
   
   color_palette = colorBin(palette = 'YlOrRd', 
                            bins = color_bin, 
                            na.color = 'transparent', 
                            domain = ee$depth) 
+  #ukrycie komunikatu ostrzegawczego
+  
+  options(warn = -1)
   
   #tworzenie mapy za pomocą pakietu 'leaflet' 
   
