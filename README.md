@@ -25,7 +25,7 @@ Pakiety potrzebne do uruchomienia kodu:
 
 Funkcje:
 ------
-**ee_mag** - argumentami funkcji jest zakres magnitudy, jaki ma zostać przedstawiony na mapie.
+**ee_mag** - argumentami funkcji jest zakres magnitudy, jaki szukamy. Wynikiem są trzęsienia ziemi o magnitudzie **z podanego przedziału** przedstawione na mapie.
 
          ee_mag = function(mag_min, mag_max){ ... }
 
