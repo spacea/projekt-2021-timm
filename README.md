@@ -1,7 +1,7 @@
 Grupa:
 ------
-Aleksandra Stefaniak,
-Urszula Sołtykowska,
+⋅⋅⋅Aleksandra Stefaniak,⋅⋅
+⋅⋅⋅Urszula Sołtykowska,⋅⋅
 Maria Timm
 
 
@@ -14,8 +14,14 @@ Pozwala to w szybki i przejrzysty sposób znalezienie interesujących odbiorcę 
 Praca z nimi jest również klarowniejsza, ponieważ wprowadzona została paleta kolorów ułatwiająca ich odczytywanie. 
 Dodatkowo, w razie błędów, wyświetlane są pomocne komunikaty, nakierowujące adresata projektu na to jaki wystąpił problem. 
 
-Dane użyte w naszej pracy pochodzą z amerykańskiej agencji naukowo-badawczej (USGS).
+_Dane użyte w naszej pracy pochodzą z amerykańskiej agencji naukowo-badawczej (USGS)._
 
+Pakiety potrzebne do uruchomienia kodu:
+------
+⋅⋅⋅leaflet⋅⋅
+⋅⋅⋅stringr⋅⋅
+⋅⋅⋅RColorBrewer⋅⋅
+⋅⋅⋅magrittr⋅⋅
 
 Funkcje:
 
