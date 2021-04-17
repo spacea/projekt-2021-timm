@@ -1,7 +1,7 @@
 Grupa:
 ------
-⋅⋅⋅Aleksandra Stefaniak,⋅⋅
-⋅⋅⋅Urszula Sołtykowska,⋅⋅
+Aleksandra Stefaniak,
+Urszula Sołtykowska,
 Maria Timm
 
 
@@ -18,10 +18,10 @@ _Dane użyte w naszej pracy pochodzą z amerykańskiej agencji naukowo-badawczej
 
 Pakiety potrzebne do uruchomienia kodu:
 ------
-⋅⋅⋅leaflet⋅⋅
-⋅⋅⋅stringr⋅⋅
-⋅⋅⋅RColorBrewer⋅⋅
-⋅⋅⋅magrittr⋅⋅
+⋅⋅*leaflet
+⋅⋅*stringr
+⋅⋅*RColorBrewer
+⋅⋅*magrittr
 
 Funkcje:
 
