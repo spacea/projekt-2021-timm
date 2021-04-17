@@ -1,12 +1,12 @@
 Grupa:
-======
-
+------
 Aleksandra Stefaniak
 Urszula Sołtykowska
 Maria Timm
 
 
 Założenia i opis projektu:
+------
 
 Nasz projekt pozwala na przedstawienie oraz zwizualizowanie na mapie danych dotyczących trzęsień Ziemi na świecie w sposób wybrany przez odbiorcę. 
 Stworzone funkcje, wykorzystujące pakiety wymienione poniżej, dają możliwość między innymi: wybrania zakresu głębokości zjawiska, wartości magnitudy czy też wyświetlenia trzęsień z dnia, który nas interesuje. 
