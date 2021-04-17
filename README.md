@@ -1,7 +1,7 @@
 Grupa:
 ------
-Urszula Sołtykowska,
-Aleksandra Stefaniak,
+Urszula Sołtykowska,\
+Aleksandra Stefaniak,\
 Maria Timm
 
 
